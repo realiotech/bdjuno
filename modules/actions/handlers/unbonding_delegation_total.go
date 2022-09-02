@@ -35,7 +35,7 @@ func UnbondingDelegationsTotal(ctx *types.Context, payload *types.Payload) (inte
 	var totalAmount = big.NewInt(0)
 	for _, eachUnbondingDelegation := range unbondingDelegations.UnbondingResponses {
 		for _, entry := range eachUnbondingDelegation.Entries {
-			totalAmount = totalAmount.Add(totalAmount, entry.Balance.BigInt())
+			totalAmount = totalAmount.Add(totalAmount, entry.Balance.Amount.BigInt())
 		}
 	}
 
