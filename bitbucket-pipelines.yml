@@ -1,4 +1,4 @@
-image: python:3.7.3
+image: atlassian/default-image:2
 
 pipelines:
   branches:
@@ -13,6 +13,10 @@ pipelines:
             - git remote add sync git@github.com:realiotech/bdjuno.git
             - git checkout -b /chains/realionetwork/testnet
             - git push sync /chains/realionetwork/testnet
+          services:
+            - docker
+          caches:
+            - docker
     master:
       - step:
           script:
@@ -24,3 +28,7 @@ pipelines:
             - git remote add sync git@github.com:realiotech/bdjuno.git
             - git checkout -b /chains/realionetwork
             - git push sync /chains/realionetwork
+          services:
+            - docker
+          caches:
+            - docker
