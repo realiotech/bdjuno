@@ -1,0 +1,26 @@
+image: atlassian/default-image:2
+
+pipelines:
+  branches:
+    staging:
+      - step:
+          script:
+            - docker login $DOCKER_REGISTRY -u $DOCKER_REGISTRY_USER -p $DOCKER_REGISTRY_PASSWORD
+            - docker build --build-arg=GIT_COMMIT=$BITBUCKET_COMMIT -t $DOCKER_REGISTRY/$BITBUCKET_REPO_SLUG:$BITBUCKET_COMMIT -f Dockerfile .
+            - docker tag $DOCKER_REGISTRY/$BITBUCKET_REPO_SLUG:$BITBUCKET_COMMIT $DOCKER_REGISTRY/$BITBUCKET_REPO_SLUG:latest
+            - docker push $DOCKER_REGISTRY/$BITBUCKET_REPO_SLUG:latest
+            - docker push $DOCKER_REGISTRY/$BITBUCKET_REPO_SLUG:$BITBUCKET_COMMIT
+            - git remote add sync git@github.com:realiotech/bdjuno.git
+            - git checkout -b /chains/realionetwork/testnet
+            - git push sync /chains/realionetwork/testnet
+    master:
+      - step:
+          script:
+            - docker login $DOCKER_REGISTRY -u $DOCKER_REGISTRY_USER -p $DOCKER_REGISTRY_PASSWORD
+            - docker build --build-arg=GIT_COMMIT=$BITBUCKET_COMMIT -t $DOCKER_REGISTRY/$BITBUCKET_REPO_SLUG:$BITBUCKET_COMMIT -f Dockerfile .
+            - docker tag $DOCKER_REGISTRY/$BITBUCKET_REPO_SLUG:$BITBUCKET_COMMIT $DOCKER_REGISTRY/$BITBUCKET_REPO_SLUG:prod
+            - docker push $DOCKER_REGISTRY/$BITBUCKET_REPO_SLUG:prod
+            - docker push $DOCKER_REGISTRY/$BITBUCKET_REPO_SLUG:$BITBUCKET_COMMIT
+            - git remote add sync git@github.com:realiotech/bdjuno.git
+            - git checkout -b /chains/realionetwork
+            - git push sync /chains/realionetwork
