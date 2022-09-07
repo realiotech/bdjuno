@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 bdjuno parse genesis-file --genesis-file-path /bdjuno/config/genesis.json
 
