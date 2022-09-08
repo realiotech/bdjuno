@@ -11,5 +11,5 @@ WORKDIR /bdjuno
 COPY --from=builder /go/src/github.com/forbole/bdjuno/build/bdjuno /usr/bin/bdjuno
 
 ADD bin /bdjuno/bin
-ADD harusa /bdjuno/hasura
+ADD hasura /bdjuno/hasura
 ENTRYPOINT ["./bin/run.sh"]
