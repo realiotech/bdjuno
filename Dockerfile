@@ -9,7 +9,7 @@ RUN make build
 FROM alpine:latest
 WORKDIR /bdjuno
 COPY --from=builder /go/src/github.com/forbole/bdjuno/build/bdjuno /usr/bin/bdjuno
-
+RUN curl -L https://github.com/hasura/graphql-engine/raw/stable/cli/get.sh | sh
 ADD bin /bdjuno/bin
 ADD hasura /bdjuno/hasura
 ENTRYPOINT ["./bin/run.sh"]
