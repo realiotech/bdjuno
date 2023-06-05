@@ -26,8 +26,8 @@ pipelines:
             - docker push $DOCKER_REGISTRY/$BITBUCKET_REPO_SLUG:prod
             - docker push $DOCKER_REGISTRY/$BITBUCKET_REPO_SLUG:$BITBUCKET_COMMIT
             - git remote add sync git@github.com:realiotech/bdjuno.git
-            - git checkout -b chains/realionetwork
-            - git push sync chains/realionetwork
+            - git checkout -b chains/realionetwork/mainnet
+            - git push sync chains/realionetwork/mainnet
           services:
             - docker
           caches:
