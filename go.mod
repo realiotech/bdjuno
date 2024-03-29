@@ -189,8 +189,7 @@ require (
 replace (
 	github.com/99designs/keyring => github.com/cosmos/keyring v1.1.7-0.20210622111912-ef00f8ac3d76
 
-	// use Realio sdk v0.46.11-realio-2
-	github.com/cosmos/cosmos-sdk => github.com/realiotech/cosmos-sdk v0.46.11-realio-2
+	github.com/cosmos/cosmos-sdk => github.com/decentrio/cosmos-sdk v0.46.12-0.20240103120710-e7af80d04f39
 	// temporary fork of ethermint while evmos upgrades
 	github.com/evmos/ethermint => github.com/realiotech/ethermint v0.21.0-realio-1
 	//use Realiotech juno fork
