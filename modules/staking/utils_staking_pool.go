@@ -29,7 +29,7 @@ func (m *Module) GetStakingPool(height int64) (*types.Pool, error) {
 			// calculate total value of unbonding tokens
 			for _, unbonding := range unbondingDelegations {
 				for _, entry := range unbonding.Entries {
-					unbondingTokens = unbondingTokens.Add(entry.Balance.Amount)
+					unbondingTokens = unbondingTokens.Add(entry.Balance)
 				}
 			}
 		}
