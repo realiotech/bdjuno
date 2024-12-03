@@ -11,5 +11,5 @@ WORKDIR /callisto
 COPY --from=builder /go/src/github.com/forbole/callisto/build/callisto /usr/bin/callisto
 RUN curl -L https://github.com/hasura/graphql-engine/raw/stable/cli/get.sh | sh
 ADD bin /callisto/bin
-ADD hasura /bdjuno/hasura
+ADD hasura /callisto/hasura
 ENTRYPOINT ["./bin/run.sh"]
