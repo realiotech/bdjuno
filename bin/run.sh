@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
-bdjuno init
+callisto init
 
-bdjuno parse genesis-file --genesis-file-path /bdjuno/config/genesis.json
+callisto parse genesis-file --genesis-file-path /callisto/config/genesis.json
 
-exec bdjuno start --home /bdjuno/config
+exec callisto start --home /callisto/config

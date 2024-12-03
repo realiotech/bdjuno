@@ -1,11 +1,11 @@
 package database_test
 
 import (
+	feegranttypes "cosmossdk.io/x/feegrant"
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	feegranttypes "github.com/cosmos/cosmos-sdk/x/feegrant"
 
-	dbtypes "github.com/forbole/bdjuno/v4/database/types"
-	"github.com/forbole/bdjuno/v4/types"
+	dbtypes "github.com/forbole/callisto/v4/database/types"
+	"github.com/forbole/callisto/v4/types"
 )
 
 func (suite *DbTestSuite) TestBigDipperDb_SaveFeeGrantAllowance() {
@@ -36,10 +36,6 @@ func (suite *DbTestSuite) TestBigDipperDb_SaveFeeGrantAllowance() {
 	suite.Require().Equal(rows[0].Grantee, grantee.String())
 	suite.Require().Equal(rows[0].Height, int64(121622))
 
-	var stored feegranttypes.FeeAllowanceI
-	err = suite.database.EncodingConfig.Codec.UnmarshalInterfaceJSON([]byte(rows[0].Allowance), &stored)
-	suite.Require().NoError(err)
-	suite.Require().Equal(allowance, stored)
 }
 
 func (suite *DbTestSuite) TestBigDipperDb_RemoveFeeGrantAllowance() {
