@@ -2,9 +2,12 @@ package types
 
 import (
 	"fmt"
+	"os"
 
+	simtestutil "github.com/cosmos/cosmos-sdk/testutil/sims"
 	"github.com/forbole/juno/v6/node/remote"
 
+	"cosmossdk.io/log"
 	"github.com/cosmos/cosmos-sdk/codec"
 	banktypes "github.com/cosmos/cosmos-sdk/x/bank/types"
 	distrkeeper "github.com/cosmos/cosmos-sdk/x/distribution/keeper"
@@ -72,8 +75,8 @@ func buildLocalSources(cfg *local.Details, cdc codec.Codec) (*Sources, error) {
 	app := simapp.NewSimApp(cdc)
 
 	realioApp := realioApp.New(
-		log.NewTMLogger(log.NewSyncWriter(os.Stdout)), source.StoreDB, nil, true, map[int64]bool{},
-		cfg.Home, 0, simapp.MakeTestEncodingConfig(), simapp.EmptyAppOptions{},
+		log.NewLogger(os.Stdout), source.StoreDB, nil, true, map[int64]bool{},
+		cfg.Home, 0, realioApp.MakeEncodingConfig(), simtestutil.EmptyAppOptions{},
 	)
 
 	sources := &Sources{

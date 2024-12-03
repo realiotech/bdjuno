@@ -75,10 +75,7 @@ func (suite *DbTestSuite) TestBigDipperDb_SaveInflation() {
 func (suite *DbTestSuite) TestBigDipperDb_SaveMintParams() {
 	mintParams := minttypes.NewParams(
 		"udaric",
-		math.LegacyNewDecWithPrec(4, 1),
-		math.LegacyNewDecWithPrec(8, 1),
-		math.LegacyNewDecWithPrec(4, 1),
-		math.LegacyNewDecWithPrec(8, 1),
+		math.LegacyNewDecWithPrec(8, 2),
 		5006000,
 	)
 	err := suite.database.SaveMintParams(types.NewMintParams(mintParams, 10))
